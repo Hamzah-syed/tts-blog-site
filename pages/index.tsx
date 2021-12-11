@@ -3,7 +3,7 @@ import { Categories, Loader, PostCard, PostWidget } from "../components/shared/i
 import { getPosts } from "../services/index";
 import { IPosts } from "../interfaces/index";
 import { FeaturedPosts } from "../components/sections/home"
-import router from "next/router";
+
 
 // const posts = [
 //   { title: "React Testing", excerpt: "Learn React Testing" },
@@ -14,9 +14,6 @@ interface IProps {
 }
 
 export default function Home({ posts }: IProps) {
-  if (router.isFallback) {
-    return <Loader />;
-  }
 
   return (
     <div className="container mx-auto px-10 mb-8">

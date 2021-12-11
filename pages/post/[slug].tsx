@@ -7,14 +7,21 @@ import {
   Author,
   CommentsForm,
   Comments,
+  Loader,
 } from "../../components/shared";
 import { IPost } from "../../interfaces";
+import { useRouter } from "next/router";
 
 interface IProps {
   post: IPost;
 }
 
 const Post: FC<IProps> = ({ post }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="container mx-auto px-10 mb-8">
@@ -55,6 +62,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: false,
+    fallback: true,
   };
 };
